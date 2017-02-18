@@ -8,19 +8,27 @@ router.get('/', function (req, res, next) {
   var username = req.query.username
   var password = req.query.password
   var response = {}
-  User.findOne({username: username}, function (err, users) {
-    if (err) {
+  User.findOne({username: username}, function (err, user) {
+    try {
+      if (err) {
+        res.send(JSON.stringify({ status: 'error',message: 'username not found'}))
+        return console.log(err)
+      }
+      if (user == null) {
+        res.send(JSON.stringify({ status: 'error',message: 'username not found'}))
+        return
+      }
+      console.log('>>>> ' + user)
+      if (user.password === req.query.password)
+        response = { status: 'success',message: 'authenticated successfully' }
+      else
+        response = { status: 'error',authenticate: 'password incorrect' }
+
+      res.send(JSON.stringify(response))
+    } catch(e) {
+      console.log(e)
       res.send(JSON.stringify({ status: 'error',message: 'username not found'}))
-      return console.log(err)
     }
-
-    console.log('>>>> ' + users)
-    if (password === req.query.password)
-      response = { status: 'success',message: 'authenticated successfully' }
-    else
-      response = { status: 'error',authenticate: 'password incorrect' }
-
-    res.send(JSON.stringify(response))
   })
 })
 

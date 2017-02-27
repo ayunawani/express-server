@@ -6,6 +6,7 @@ var DishSchema = mongoose.Schema({
   origin: String,
   author: String,
   recipe: String,
+  image: String,
   updated_at: {
     type: Date,
     default: Date.now

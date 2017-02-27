@@ -22,11 +22,13 @@ function postDish (req, res) {
     description: req.body.description,
     origin: req.body.origin,
     author: req.body.author,
+    image: req.body.image,
     recipe: 'make'
   })
   dish.save(function (err) {
     if (err)
       return console.log(err)
+    JSON.stringify(req.body)
     console.log('saved')
     res.set('Content-Type', 'application/json')
     res.send(JSON.stringify({response: 'saved'}))

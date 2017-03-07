@@ -20,7 +20,7 @@ router.get('/', function (req, res, next) {
       }
       console.log('>>>> ' + user)
       if (user.password === req.query.password)
-        response = { status: 'success',message: 'authenticated successfully' }
+        response = { status: 'success',message: 'authenticated successfully', user: user }
       else
         response = { status: 'error',authenticate: 'password incorrect' }
 

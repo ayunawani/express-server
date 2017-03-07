@@ -8,7 +8,7 @@ router.post('/', function (req, res, next) {
   var body = req.body
   console.log(body)
   var user = new User({
-    fristname: body.firstname,
+    firstname: body.firstname,
     lastname: body.lastname,
     username: body.username,
     password: body.password,

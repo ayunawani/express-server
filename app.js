@@ -18,7 +18,9 @@ var register = require('./routes/register')
 var app = express()
 
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/foodbook')
+
+// mongoose.connect('mongodb://localhost/foodbook')
+mongoose.connect('mongodb://admin:admin@ds119210.mlab.com:19210/foodbook')
   .then(() => console.log('connection successful'))
   .catch((err) => console.log(err))
 

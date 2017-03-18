@@ -28,7 +28,7 @@ router.get('/:username', function (req, res, next) {
 router.post('/:username', function (req, res, next) {
   let username = req.params.username
   console.log(req.body)
-  User.update({username: username}, user, (err, numberAffected, rawResponse) => {
+  User.update({username: username}, req.body, (err, numberAffected, rawResponse) => {
     if (err)
       return console.log(err)
 
